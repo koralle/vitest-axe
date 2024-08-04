@@ -10,6 +10,7 @@ import {
   format as prettyFormat,
   plugins as prettyFormatPlugins,
 } from "pretty-format"
+import { MIDDLE_DOT } from "./consts"
 
 const {
   AsymmetricMatcher,
@@ -46,10 +47,10 @@ export type MatcherHintOptions = {
 
 const EXPECTED_COLOR = chalk.green
 const RECEIVED_COLOR = chalk.red
-const SPACE_SYMBOL = "\u{00B7}" // middle dot
+const SPACE_SYMBOL = MIDDLE_DOT
 
 function stringify(object: unknown, maxDepth = 10, maxWidth = 10): string {
-  let MAX_LENGTH = 10000
+  const MAX_LENGTH = 10000
   let result
 
   try {
@@ -80,27 +81,27 @@ function stringify(object: unknown, maxDepth = 10, maxWidth = 10): string {
 
 // Instead of inverse highlight which now implies a change,
 // replace common spaces with middle dot at the end of any line.
-function replaceTrailingSpaces(text: string): string {
+const replaceTrailingSpaces = (text: string): string => {
   return text.replace(/\s+$/gm, (spaces) => SPACE_SYMBOL.repeat(spaces.length))
 }
 
-export function printReceived(object: unknown): string {
+export const printReceived = (object: unknown): string => {
   return RECEIVED_COLOR(replaceTrailingSpaces(stringify(object)))
 }
 
-export function printExpected(value: unknown): string {
+export const printExpected = (value: unknown): string => {
   return EXPECTED_COLOR(replaceTrailingSpaces(stringify(value)))
 }
 
 // Display assertion for the report when a test fails.
 // New format: rejects/resolves, not, and matcher name have black color
 // Old format: matcher name has dim color
-export function matcherHint(
+export const matcherHint = (
   matcherName: string,
   received = "received",
   expected = "expected",
   options: MatcherHintOptions = {},
-): string {
+): string => {
   const {
     comment = "",
     expectedColor = EXPECTED_COLOR,

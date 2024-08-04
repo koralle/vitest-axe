@@ -1,17 +1,15 @@
-import AxeCore from "axe-core"
+import { AxeCore } from "./core"
 import { merge } from "lodash-es"
 import { isHTMLElement, isHTMLString } from "./utils"
 
-const { configure, run, getRules } = AxeCore
-
-const AXE_RULES_COLOR = getRules(["cat.color"])
+const AXE_RULES_COLOR = AxeCore.getRules(["cat.color"])
 
 /**
  * Converts a HTML string or HTML element to a mounted HTML element.
  * @param html HTML element or a HTML string
  * @returns HTML element and a function to restore the document
  */
-function mount(html: Element | string): [HTMLElement, () => void] {
+const mount = (html: Element | string): [HTMLElement, () => void] => {
   if (isHTMLElement(html)) {
     if (document.body.contains(html)) {
       return [html, () => undefined]
@@ -20,13 +18,14 @@ function mount(html: Element | string): [HTMLElement, () => void] {
   }
 
   if (isHTMLString(html)) {
-    let originalHTML = document.body.innerHTML
-    function restore() {
-      document.body.innerHTML = originalHTML
-    }
-
+    const originalHTML = document.body.innerHTML
     document.body.innerHTML = html
-    return [document.body, restore]
+    return [
+      document.body,
+      () => {
+        document.body.innerHTML = originalHTML
+      },
+    ]
   }
 
   if (typeof html === "string") {
@@ -69,7 +68,7 @@ function configureAxe(
     enabled: false,
   }))
 
-  configure({
+  AxeCore.configure({
     rules: [...defaultRules, ...rules],
     ...otherGlobalOptions,
   })
@@ -86,15 +85,15 @@ function configureAxe(
     html: Element | string,
     additionalOptions: AxeCore.RunOptions = {},
   ): Promise<AxeCore.AxeResults> {
-    let [element, restore] = mount(html)
-    let options: AxeCore.RunOptions = merge(
+    const [element, restore] = mount(html)
+    const options: AxeCore.RunOptions = merge(
       {},
       runnerOptions,
       additionalOptions,
     )
 
     return new Promise<AxeCore.AxeResults>((resolve) => {
-      run(element, options, (err, results) => {
+      AxeCore.run(element, options, (err, results) => {
         restore()
         if (err) throw err
         resolve(results)
@@ -105,4 +104,3 @@ function configureAxe(
 
 const axe = configureAxe()
 export { configureAxe, axe }
-export type { AxeCore }
