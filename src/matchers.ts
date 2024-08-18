@@ -1,8 +1,5 @@
-import { toHaveNoViolations } from "./to-have-no-violations";
-import type {
-	AxeMatchers,
-	NoViolationsMatcherResult,
-} from "./to-have-no-violations";
+import { toHaveNoViolations } from "./to-have-no-violations"
+import type { AxeMatchers, NoViolationsMatcherResult } from "./types"
 
-export { toHaveNoViolations };
-export type { NoViolationsMatcherResult, AxeMatchers };
+export { toHaveNoViolations }
+export type { NoViolationsMatcherResult, AxeMatchers }
