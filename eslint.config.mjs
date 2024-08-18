@@ -1,3 +1,4 @@
+import eslint from "@eslint/js"
 import {
   config as tseslintConfig,
   parser as tseslintParser,
@@ -5,15 +6,12 @@ import {
 } from "typescript-eslint"
 import globals from "globals"
 import pluginImport from "eslint-plugin-import"
+import pluginVitest from "@vitest/eslint-plugin"
 import { fixupPluginRules } from "@eslint/compat"
 import { fileURLToPath } from "node:url"
 import { dirname, resolve } from "node:path"
 
 export default tseslintConfig(
-  {
-    name: "@vitest-axe/ignores/base",
-    ignores: ["dist", "extend-expect.d.ts", "matchers.d.ts"],
-  },
   {
     files: ["**/*.js", "**/*.mjs", "**/*.ts"],
     name: "@vitest-axe/language-options/base",
@@ -24,111 +22,22 @@ export default tseslintConfig(
           dirname(fileURLToPath(import.meta.url)),
           "./tsconfig.json",
         ),
-        ecmaVersion: 2022,
+        ecmaVersion: "latest",
         sourceType: "module",
         warnOnUnsupportedTypeScriptVersion: true,
       },
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...globals.es2021,
+        ...globals.es2025,
       },
     },
   },
   {
-    name: "@vitest-axe/eslint/base",
+    "name": "@vitest-axe/eslint/base",
     rules: {
-      "array-callback-return": "warn",
-      "new-parens": "warn",
-      "no-array-constructor": "warn",
-      "no-caller": "error",
-      "no-cond-assign": ["warn", "except-parens"],
-      "no-const-assign": "error",
-      "no-control-regex": "warn",
-      "no-dupe-args": "warn",
-      "no-dupe-class-members": "warn",
-      "no-dupe-keys": "warn",
-      "no-duplicate-case": "warn",
-      "no-empty-character-class": "warn",
-      "no-empty-pattern": "warn",
-      "no-empty": ["warn", { allowEmptyCatch: true }],
-      "no-eval": "error",
-      "no-ex-assign": "warn",
-      "no-extend-native": "warn",
-      "no-extra-bind": "warn",
-      "no-extra-label": "warn",
-      "no-extra-boolean-cast": "warn",
-      "no-func-assign": "error",
-      "no-global-assign": "error",
-      "no-implied-eval": "warn",
-      "no-invalid-regexp": "warn",
-      "no-label-var": "warn",
-      "no-labels": ["warn", { allowLoop: true, allowSwitch: false }],
-      "no-lone-blocks": "warn",
-      "no-loop-func": "warn",
-      "no-mixed-operators": [
-        "warn",
-        {
-          groups: [
-            ["&", "|", "^", "~", "<<", ">>", ">>>"],
-            ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
-            ["&&", "||"],
-            ["in", "instanceof"],
-          ],
-          allowSamePrecedence: false,
-        },
-      ],
-      "no-unsafe-negation": "warn",
-      "no-new-func": "warn",
-      "no-new-object": "warn",
-      "no-octal": "warn",
-      "no-redeclare": "error",
-      "no-script-url": "warn",
-      "no-self-assign": "warn",
-      "no-self-compare": "warn",
-      "no-sequences": "warn",
-      "no-shadow-restricted-names": "warn",
-      "no-sparse-arrays": "warn",
-      "no-template-curly-in-string": "warn",
-      "no-this-before-super": "warn",
-      "no-undef": "error",
-      "no-unreachable": "warn",
-      "no-unused-expressions": [
-        "warn",
-        {
-          allowShortCircuit: true,
-          allowTernary: true,
-          allowTaggedTemplates: true,
-        },
-      ],
-      "no-unused-labels": "warn",
-      "no-unused-vars": [
-        "warn",
-        {
-          args: "none",
-          ignoreRestSiblings: true,
-        },
-      ],
-      "no-use-before-define": [
-        "warn",
-        { classes: false, functions: false, variables: false },
-      ],
-      "no-useless-computed-key": "warn",
-      "no-useless-concat": "warn",
-      "no-useless-constructor": "warn",
-      "no-useless-escape": "warn",
-      "no-useless-rename": [
-        "warn",
-        {
-          ignoreDestructuring: false,
-          ignoreImport: false,
-          ignoreExport: false,
-        },
-      ],
-      "require-yield": "warn",
-      "use-isnan": "warn",
-      "valid-typeof": "warn",
-    },
+      ...eslint.configs.recommended.rules,
+    }
   },
   {
     name: "@vitest-axe/typescript/base",
@@ -193,7 +102,7 @@ export default tseslintConfig(
     settings: {
       "import/ignore": ["node_modules", "\\.(css|md|svg|json)$"],
       "import/parsers": {
-        tseslintParser: [".ts", ".tsx", ".d.ts"],
+        "@typescript-eslint/parser": [".js", ".ts", ".tsx", ".d.ts"],
       },
       "import/resolver": {
         node: {
@@ -205,9 +114,51 @@ export default tseslintConfig(
       },
     },
     rules: {
+      ...pluginImport.configs.recommended.rules,
       "import/first": "error",
       "import/no-amd": "error",
       "import/no-webpack-loader-syntax": "error",
     },
+  },
+  {
+    name: "@vitest-axe/vitest/base",
+    files: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],
+    plugins: {
+      vitest: fixupPluginRules(pluginVitest),
+    },
+    languageOptions: {
+      globals: {
+        ...pluginVitest.environments.env.globals,
+      }
+    },
+    rules: {
+      ...pluginVitest.configs.recommended.rules,
+      "vitest/consistent-test-it": [
+        "error",
+        {
+          "fn": "test",
+          "withinDescribe": "test",
+        }
+      ],
+      "vitest/prefer-strict-equal": "error",
+      "vitest/prefer-to-be-truthy": "error",
+      "vitest/prefer-to-be-falsy": "error",
+      "vitest/prefer-to-be-object": "error"
+    },
+    settings: {
+      vitest: {
+        typecheck: true
+      }
+    }
+  },
+  {
+    name: "@vitest-axe/ignores/base",
+    ignores: [
+      "dist",
+      "extend-expect.js",
+      "extend-expect.d.ts",
+      "matchers.js",
+      "matchers.d.ts"
+    ],
   },
 )
