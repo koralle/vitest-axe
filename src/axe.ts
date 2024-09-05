@@ -1,5 +1,5 @@
 import { AxeCore } from "./core"
-import { merge } from "lodash-es"
+import { merge } from "es-toolkit"
 import { isHTMLElement, isHTMLString } from "./utils"
 
 const AXE_RULES_COLOR = AxeCore.getRules(["cat.color"])
@@ -87,8 +87,7 @@ function configureAxe(
   ): Promise<AxeCore.AxeResults> {
     const [element, restore] = mount(html)
     const options: AxeCore.RunOptions = merge(
-      {},
-      runnerOptions,
+      merge({}, runnerOptions),
       additionalOptions,
     )
 
