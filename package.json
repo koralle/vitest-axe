@@ -17,14 +17,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./matchers": {
-      "types": "./dist/matchers.d.ts",
-      "default": "./dist/matchers.js"
-    },
-    "./extend-expect": {
-      "types": "./dist/extend-expect.d.ts",
-      "default": "./dist/extend-expect.js"
     }
   },
   "files": [
