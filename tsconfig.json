@@ -21,6 +21,7 @@
     "strict": true,
     "module": "esnext",
     "target": "esnext",
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "allowJs": true
   }
 }
