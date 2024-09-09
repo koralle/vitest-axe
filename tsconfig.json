@@ -4,7 +4,6 @@
     "dist",
     "node_modules",
     "./matchers.d.ts",
-    "./extend-expect.d.ts"
   ],
   "compilerOptions": {
     "composite": false,
