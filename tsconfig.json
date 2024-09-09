@@ -3,7 +3,6 @@
   "exclude": [
     "dist",
     "node_modules",
-    "./matchers.d.ts",
   ],
   "compilerOptions": {
     "composite": false,
