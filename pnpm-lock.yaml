@@ -16,7 +16,7 @@ importers:
         version: 5.3.0
       es-toolkit:
         specifier: ^1.17.0
-        version: 1.17.0
+        version: 1.22.0
     devDependencies:
       '@eslint/compat':
         specifier: ^1.1.1
@@ -1021,8 +1021,8 @@ packages:
     resolution: {integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==}
     engines: {node: '>= 0.4'}
 
-  es-toolkit@1.17.0:
-    resolution: {integrity: sha512-aJvpNxK7d+I+Rt9tmdwzelxTe4EwtxX1Kv0xv6ZTRWJBpMCxe0vxTLLW4STz6pHYjtyTTrEkonNXLaBsYHg2Yw==}
+  es-toolkit@1.22.0:
+    resolution: {integrity: sha512-0mvZ7as1Irwi+i5BNTM4Lrt5NnZGz4TcMIG8FTUuqI6GswziFGPHrmVlK+kkafSqhofKKVs6gn0GSGZiWVxAHw==}
 
   esbuild@0.21.5:
     resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
@@ -3050,7 +3050,7 @@ snapshots:
       is-date-object: 1.0.5
       is-symbol: 1.0.4
 
-  es-toolkit@1.17.0: {}
+  es-toolkit@1.22.0: {}
 
   esbuild@0.21.5:
     optionalDependencies:
