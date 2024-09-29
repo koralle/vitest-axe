@@ -24,7 +24,7 @@
         "globals",
         "typescript-eslint"
       ],
-      "labels": ["dependencies/linting"]
+      "addLabels": ["dependencies/linting"]
     },
     {
       "matchPackageNames": [
@@ -32,7 +32,7 @@
         "jsdom",
         "@vitest/eslint-plugin"
       ],
-      "labels": ["dependencies/testing"]
+      "addLabels": ["dependencies/testing"]
     },
     {
       "matchPackageNames": [
@@ -40,7 +40,7 @@
         "@tsconfig/strictest",
         "@types/*"
       ],
-      "labels": ["dependencies/typescript"]
+      "addLabels": ["dependencies/typescript"]
     }
   ]
 }
