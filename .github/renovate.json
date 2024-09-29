@@ -5,7 +5,8 @@
       "group:allNonMajor",
       ":separateMultipleMajorReleases",
       "schedule:earlyMondays",
-      ":prConcurrentLimitNone"
+      ":prConcurrentLimitNone",
+      ":prHourlyLimitNone"
     ],
   "dependencyDashboard": false,
   "reviewers": ["koralle"],
@@ -14,7 +15,8 @@
   "addLabels": ["dependencies"],
   "timezone": "Asia/Tokyo",
   "enabledManagers": ["npm"],
-  "prConcurrentLimit": 0
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
   "packageRules": [
     {
       "matchPackageNames": [
