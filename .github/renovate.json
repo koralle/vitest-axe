@@ -12,6 +12,7 @@
   "rebaseWhen": "conflicted",
   "addLabels": ["dependencies"],
   "timezone": "Asia/Tokyo",
+  "enabledManagers": ["npm"],
   "packageRules": [
     {
       "matchPackageNames": [
