@@ -9,6 +9,7 @@
   "dependencyDashboard": false,
   "reviewers": ["koralle"],
   "assignees": ["koralle"],
+  "rebaseWhen": "conflicted",
   "addLabels": ["dependencies"],
   "packageRules": [
     {
