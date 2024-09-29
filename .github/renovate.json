@@ -11,6 +11,7 @@
   "assignees": ["koralle"],
   "rebaseWhen": "conflicted",
   "addLabels": ["dependencies"],
+  "timezone": "Asia/Tokyo",
   "packageRules": [
     {
       "matchPackageNames": [
