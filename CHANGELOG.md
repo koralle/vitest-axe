@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.0 (2024-10-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove `matchers` and `expect-extend` modules ([#41](https://github.com/koralle/vitest-axe/issues/41))
+
+### Bug Fixes
+
+* **axe:** replace `require` statement with `import` statement ([9dca11b](https://github.com/koralle/vitest-axe/commit/9dca11b95be2f2aa179c3478fa9ff0fc5a29f58d))
+
+
+### Miscellaneous Chores
+
+* remove `matchers` and `expect-extend` modules ([#41](https://github.com/koralle/vitest-axe/issues/41)) ([51a3a5a](https://github.com/koralle/vitest-axe/commit/51a3a5ac7e9ed15957b0c65ecf61d6f74f0299fd))
+
 ## [0.1.1](https://github.com/koralle/vitest-axe/compare/v0.1.1...v0.1.1) (2024-09-09)
 
 
