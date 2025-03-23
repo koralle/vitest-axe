@@ -54,7 +54,7 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "globals": "^15.9.0",
-    "jsdom": "^24.1.1",
+    "jsdom": "^25.0.1",
     "lefthook": "^1.7.12",
     "prettier": "^3.3.3",
     "pretty-format": "^28.1.3",
