@@ -51,7 +51,7 @@
     "@vitest/eslint-plugin": "^1.0.3",
     "eslint": "^9.9.0",
     "eslint-import-resolver-node": "^0.3.9",
-    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-import-resolver-typescript": "^4.3.4",
     "eslint-plugin-import": "^2.29.1",
     "globals": "^15.9.0",
     "jsdom": "^24.1.1",
