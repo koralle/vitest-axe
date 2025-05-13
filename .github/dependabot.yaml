@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 10
+    groups:
+      vitest:
+        patterns:
+          - vitest
+          - "@vitest/*"
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
